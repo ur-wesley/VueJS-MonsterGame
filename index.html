@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Monster Slayer</title>
+  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/foundation.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+</head>
+
+<body>
+  <div id="app">
+    <section class="row">
+      <div class="small-6 columns">
+        <h1 class="text-center">YOU</h1>
+        <div class="healthbar">
+          <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
+            :style="{ width: playerHealth + '%' }">
+            {{ playerHealth }}
+          </div>
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <h1 class="text-center">MONSTER</h1>
+        <div class="healthbar">
+          <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
+            :style="{ width: monsterHealth + '%'}">
+            {{ monsterHealth }}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="row controls" v-if="!gameIsRunning" @click="startGame">
+      <div class="small-12 columns">
+        <button id="start-game">START NEW GAME</button>
+      </div>
+    </section>
+    <section class="row controls" v-else>
+      <div class="small-12 columns">
+        <button id="attack" @click="attack">ATTACK</button>
+        <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+        <button id="heal" @click="healUp">HEAL</button>
+        <button id="give-up" @click="giveUp">GIVE UP</button>
+      </div>
+    </section>
+
+    <div v-if="turns.length > 0" class="row status text-center">
+
+      <div class="columns small-5 large-5"
+        :class="{'player-turn': turns[0].isPlayer, 'monster-turn': !turns[0].isPlayer}">
+        <p v-if="!turn.isPlayer" v-for="turn in turns"> {{ turn.text }} </p>
+      </div>
+
+      <div class="columns small-1 large-1">
+            <p v-if="!turn.isPlayer" v-for="turn in turns"> </p>
+      </div>
+
+      <div class="columns small-5 large-5"
+        :class="{'player-turn': turns[1].isPlayer, 'monster-turn': !turns[1].isPlayer}">
+        <p v-if="turn.isPlayer" v-for="turn in turns"> {{ turn.text }} </p>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
