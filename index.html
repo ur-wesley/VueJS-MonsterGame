@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/foundation.min.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
     </section>
     <section class="row controls" v-if="!gameIsRunning" @click="startGame">
       <div class="small-12 columns">
-        <button id="start-game">START NEW GAME</button>
+        <button id="start-game" @click="animate">START NEW GAME</button>
       </div>
     </section>
     <section class="row controls" v-else>
@@ -62,8 +63,24 @@
       </div>
 
     </div>
-
   </div>
+
+  <div id="rod">
+    <div id="pivot"></div>
+    <div id="ball"></div>
+  </div>
+
+  <script>
+let animation = anime({
+  targets: '#rod',
+  rotate: [150, -150],
+  duration: 3000,
+  easing: 'easeInOutSine',
+  direction: 'alternate',
+  loop: true
+});   
+  </script>
+  
   <script src="app.js"></script>
 </body>
 

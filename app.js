@@ -85,6 +85,15 @@ new Vue({
                 isPlayer: false,
                 text: 'Monster hits Player for ' + dmg
             })
-        }
+        },
+        // animate: function() {
+        //     console.log("Here");
+        //     anime({
+        //         targets: '.healthbar',
+        //         duration: 1500,
+        //         // easing: 'easeInSine',
+        //         elasticity: 400,
+        //         width: this.width
+        //     })
     }
 })
